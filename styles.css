@@ -1,0 +1,49 @@
+css
+body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background-color: #ffffff;
+    color: #000000;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 600px;
+    margin: 100px auto;
+    padding: 20px;
+}
+
+.title {
+    font-size: 50px; /* 🔥 Scritta "PodScan AI" più grande */
+    font-weight: bold;
+}
+
+.subtitle {
+    font-size: 22px; /* 🔥 Sottotitolo più grande */
+    font-weight: bold; /* 🔥 Testo più spesso */
+    margin-bottom: 20px;
+}
+
+.search-bar {
+    width: 80%;
+    padding: 10px;
+    border: 3px solid #8000ff; /* 🟣 Contorno della barra viola */
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+.search-button {
+    background-color: #8000ff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    font-size: 16px;
+    margin-top: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.search-button:hover {
+    background-color: #5c00cc;
+}
