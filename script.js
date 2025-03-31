@@ -1,76 +1,26 @@
-css
-body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    background-color: #ffffff;
-    color: #000;
-    margin: 0;
-    padding: 0;
-}
+js
+document.addEventListener("DOMContentLoaded", function () {
+    const searchBtn = document.querySelector(".search-btn");
+    const searchBar = document.querySelector(".search-bar");
 
-.container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-}
+    searchBtn.addEventListener("click", function () {
+        const videoLink = searchBar.value.trim();
 
-h1 {
-    font-size: 2.5rem;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
+        if (videoLink === "") {
+            alert("⚠ Please enter a video link!"); // Messaggio se l'input è vuoto
+            return;
+        }
 
-h2 {
-    font-size: 1.4rem;
-    font-weight: 600;
-    margin-bottom: 20px;
-}
+        // Controlliamo se il link è valido (YouTube, TikTok, etc.)
+        const validPlatforms = ["youtube.com", "youtu.be", "tiktok.com", "instagram.com", "facebook.com", "x.com", "twitter.com"];const isValidLink = validPlatforms.some(platform => videoLink.includes(platform));
 
-/* 🔹 Contenitore della barra di ricerca */
-.search-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    width: 100%;
-    max-width: 350px;
-}
+        if (!isValidLink) {
+            alert("❌ Invalid link! Please enter a valid video URL.");
+            return;
+        }
 
-.search-bar {
-    width: 100%;
-    padding: 10px;
-    border: 2px solid #8000ff;
-    border-radius: 8px;
-    font-size: 1rem;
-    text-align: center;
-}
-
-.search-btn {
-    background-color: #8000ff;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    font-size: 1rem;
-    border-radius: 8px;
-    cursor: pointer;
-    width: 100%;
-}
-
-.search-btn:hover {
-    background-color: #5d00b3;
-}
-
-/* 🔹 Ottimizzazione per Mobile */
-@media (max-width: 768px) {
-    h1 {
-        font-size: 2rem;
-    }
-    h2 {
-        font-size: 1.2rem;
-    }
-    .search-container {
-        max-width: 90%;
-    }
-}
+        // ✅ Se il link è valido, lo mostriamo in console (per ora)
+        console.log("✅ Valid link:", videoLink);
+        alert("🎉 Link accepted! Processing...");
+    });
+});
