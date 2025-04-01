@@ -1,2 +1,4 @@
 js
-alert("✅ JavaScript è collegato e sta funzionando!");
+setTimeout(function() {
+    document.title = "✅ PodScan AI - Funziona!";
+}, 3000);
