@@ -137,3 +137,46 @@ h2 {
     transition: opacity 0.3s ease;
 }
 
+/* 🔹 Miglioramenti UI */
+.search-bar {
+    width: 100%;
+    padding: 10px;
+    border: 2px solid #8000ff;
+    border-radius: 8px;
+    font-size: 1rem;
+    text-align: center;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.search-bar:focus {
+    border-color: #5d00b3;
+    box-shadow: 0 0 8px rgba(128, 0, 255, 0.5);
+}
+
+/* 🔹 Effetto vibrazione su errore */
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+}
+
+.shake {
+    animation: shake 0.3s ease-in-out;
+}
+
+/* 🔹 Bottone migliorato */
+.search-btn {
+    background-color: #8000ff;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 1rem;
+    border-radius: 8px;
+    cursor: pointer;transition: background-color 0.3s ease, transform 0.1s ease;
+}
+
+.search-btn:hover {
+    background-color: #5d00b3;
+    transform: scale(1.05);
+}
