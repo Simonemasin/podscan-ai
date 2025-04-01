@@ -137,13 +137,16 @@ h2 {
     transition: opacity 0.3s ease;
 }
 
-header {
+/* 🔹 Stile per il logo */
+.logo-container {
     position: absolute;
     top: 20px;
     left: 20px;
 }
 
 .logo {
-    width: 120px;  /* Modifica la grandezza del logo */
+    width: 120px;  /* Dimensione regolabile */
     height: auto;
 }
+
+
