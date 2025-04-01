@@ -1,30 +1,40 @@
-document.addEventListener("DOMContentLoaded", function() {
+js
+document.addEventListener("DOMContentLoaded", function () {
     const searchBar = document.querySelector(".search-bar");
     const searchBtn = document.querySelector(".search-btn");
+    
+    // Creiamo un elemento per i messaggi di errore/successo
+    const message = document.createElement("p");
+    message.style.fontSize = "14px";
+    message.style.marginTop = "5px";
+    message.style.fontWeight = "bold";
+    document.querySelector(".search-container").appendChild(message);
 
-    searchBtn.addEventListener("click", function() {
-        const userInput = searchBar.value.trim();
+    searchBtn.addEventListener("click", function () {
+        const videoLink = searchBar.value.trim();const validPlatforms = ["youtube.com", "youtu.be", "tiktok.com", "instagram.com", "facebook.com", "x.com", "twitter.com"];
 
-        // Lista delle piattaforme supportate
-        const validPlatforms = [
-            "youtube.com",
-            "youtu.be",
-            "tiktok.com",
-            "instagram.com",
-            "facebook.com",
-            "snapchat.com",
-            "twitter.com",
-            "x.com"
-        ];
+        // Controlliamo se il link contiene uno dei domini validi
+        const isValid = validPlatforms.some(platform => videoLink.includes(platform));
 
-        // Controlla se l'URL inserito contiene uno dei domini validi
-        const isValid = validPlatforms.some(platform => userInput.includes(platform));
+        if (isValid) {
+            searchBar.style.border = "2px solid #00b300"; // Verde ✅
+            message.textContent = "✅ Link valido! Ora puoi cercare il podcast.";
+            message.style.color = "#00b300";
+        } else {
+            searchBar.style.border = "2px solid #ff0000"; // Rosso ❌
+            message.textContent = "❌ Errore: inserisci un link di YouTube, TikTok, Instagram, ecc.";
+            message.style.color = "#ff0000";
 
-        if (isValid) {searchBar.style.borderColor = "green";  // Cambia il bordo in verde
-        alert("✅ Link valido! Stiamo cercando il podcast...");
-    } else {
-        searchBar.style.borderColor = "red";  // Cambia il bordo in rosso
-        alert("❌ Link non valido! Inserisci un link da YouTube, TikTok, Instagram, Facebook, Snapchat o Twitter.");
-    }
+            // Effetto vibrazione per errore
+            searchBar.classList.add("shake");
+            setTimeout(() => searchBar.classList.remove("shake"), 300);
+        }
+    });
+
+    // Reset della barra quando l'utente inizia a scrivere
+    searchBar.addEventListener("input", function () {
+        searchBar.style.border = "2px solid #8000ff"; // Contorno viola normale
+        message.textContent = ""; // Nasconde il messaggio
+    });
 });
-});
+
