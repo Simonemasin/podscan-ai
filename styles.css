@@ -87,3 +87,53 @@ h2 {
     animation: shake 0.3s ease-in-out;
 }
 
+/* Effetto transizione fluida sui colori della barra di ricerca */
+.search-bar {
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Effetto transizione quando diventa rossa o verde */
+.search-bar.valid {
+    border-color: #00c853; /* Verde */
+    box-shadow: 0 0 8px rgba(0, 200, 83, 0.6);
+}
+
+.search-bar.invalid {
+    border-color: #d50000; /* Rosso */
+    box-shadow: 0 0 8px rgba(213, 0, 0, 0.6);
+}
+
+/* Effetto vibrazione realistico */
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+    100% { transform: translateX(0); }
+}
+
+.shake {
+    animation: shake 0.3s ease-in-out;
+}
+
+/* Hover più fluido sul pulsante */
+.search-btn:hover {
+    background-color: #6a00cc;
+    transition: background-color 0.3s ease;
+}
+
+/* Aggiunta di un'icona accanto alla barra */
+.status-icon {
+    font-size: 1.4rem;
+    margin-left: 8px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.valid + .status-icon {
+    font-size: 1.4rem;
+    margin-left: 8px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+

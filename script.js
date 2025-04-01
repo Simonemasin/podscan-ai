@@ -37,3 +37,30 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 });
 
+document.addEventListener("DOMContentLoaded", function () {
+    const searchBar = document.querySelector(".search-bar");
+    const searchButton = document.querySelector(".search-btn");
+
+    searchBar.addEventListener("input", function () {
+        const link = searchBar.value.trim();
+        const validPlatforms = ["youtube.com", "youtu.be", "tiktok.com", "instagram.com", "facebook.com", "twitter.com", "x.com"];
+        
+        // Controlla se il link contiene una delle piattaforme valide
+        const isValid = validPlatforms.some(platform => link.includes(platform));
+
+        if (isValid) {
+            searchBar.classList.remove("invalid", "shake");
+            searchBar.classList.add("valid");
+        } else {
+            searchBar.classList.remove("valid");
+            searchBar.classList.add("invalid");
+        }
+    });
+
+    searchButton.addEventListener("click", function () {
+        if (searchBar.classList.contains("invalid")) {
+            searchBar.classList.add("shake");
+            setTimeout(() => searchBar.classList.remove("shake"), 300);
+        }
+    });
+});
