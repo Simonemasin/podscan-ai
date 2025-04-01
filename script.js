@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const searchBar = document.querySelector(".search-bar");
     const searchBtn = document.querySelector(".search-btn");
     
-    // Creiamo un elemento per i messaggi di errore/successo
+    // Create an element for success/error messages
     const message = document.createElement("p");
     message.style.fontSize = "14px";
     message.style.marginTop = "5px";
@@ -10,30 +10,30 @@ document.addEventListener("DOMContentLoaded", function () {
     document.querySelector(".search-container").appendChild(message);
 
     searchBtn.addEventListener("click", function () {
-        const videoLink = searchBar.value.trim();const validPlatforms = ["youtube.com", "youtu.be", "tiktok.com", "instagram.com", "facebook.com", "x.com", "twitter.com"];
+        const videoLink = searchBar.value.trim();
+        const validPlatforms = ["youtube.com", "youtu.be", "tiktok.com", "instagram.com", "facebook.com", "x.com", "twitter.com"];
 
-        // Controlliamo se il link contiene uno dei domini validi
+        // Check if the link contains one of the valid domains
         const isValid = validPlatforms.some(platform => videoLink.includes(platform));
 
         if (isValid) {
-            searchBar.style.border = "2px solid #00b300"; // Verde ✅
-            message.textContent = "✅ Link valido! Ora puoi cercare il podcast.";
+            searchBar.style.border = "2px solid #00b300"; // Green ✅message.textContent = "✅ Valid link! You can now search for the podcast.";
             message.style.color = "#00b300";
         } else {
-            searchBar.style.border = "2px solid #ff0000"; // Rosso ❌
-            message.textContent = "❌ Errore: inserisci un link di YouTube, TikTok, Instagram, ecc.";
+            searchBar.style.border = "2px solid #ff0000"; // Red ❌
+            message.textContent = "❌ Error: Please enter a link from YouTube, TikTok, Instagram, etc.";
             message.style.color = "#ff0000";
 
-            // Effetto vibrazione per errore
+            // Shake effect for error
             searchBar.classList.add("shake");
             setTimeout(() => searchBar.classList.remove("shake"), 300);
         }
     });
 
-    // Reset della barra quando l'utente inizia a scrivere
+    // Reset the search bar when the user starts typing
     searchBar.addEventListener("input", function () {
-        searchBar.style.border = "2px solid #8000ff"; // Contorno viola normale
-        message.textContent = ""; // Nasconde il messaggio
+        searchBar.style.border = "2px solid #8000ff"; // Default purple border
+        message.textContent = ""; // Hide the message
     });
 });
 
@@ -45,8 +45,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const link = searchBar.value.trim();
         const validPlatforms = ["youtube.com", "youtu.be", "tiktok.com", "instagram.com", "facebook.com", "twitter.com", "x.com"];
         
-        // Controlla se il link contiene una delle piattaforme valide
-        const isValid = validPlatforms.some(platform => link.includes(platform));
+        // Check if the link contains one of the valid platformsconst isValid = validPlatforms.some(platform => link.includes(platform));
 
         if (isValid) {
             searchBar.classList.remove("invalid", "shake");
@@ -61,6 +60,6 @@ document.addEventListener("DOMContentLoaded", function () {
         if (searchBar.classList.contains("invalid")) {
             searchBar.classList.add("shake");
             setTimeout(() => searchBar.classList.remove("shake"), 300);
-        }
-    });
+        }
+    });
 });
