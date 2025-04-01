@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", function () {
             message.textContent = "✅ Valid link! You can now search for the podcast.";
             message.style.color = "#00b300";
         } else {searchBar.style.border = "2px solid #ff0000"; // Rosso ❌
-    message.textContent = "❌ Error: Please enter a valid YouTube, TikTok, Instagram, etc. link.";
+    message.textContent = "❌ Error: Please enter a valid YouTube, TikTok, Instagram, Facebook, or Twitter/X link.";
     message.style.color = "#ff0000";
 
     // Effetto vibrazione
