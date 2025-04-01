@@ -1,4 +1,3 @@
-js
 document.addEventListener("DOMContentLoaded", function () {
     const searchBar = document.querySelector(".search-bar");
     const searchBtn = document.querySelector(".search-btn");
