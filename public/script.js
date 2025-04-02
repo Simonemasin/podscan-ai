@@ -1,38 +1,45 @@
-document.getElementById('search-btn').addEventListener('click', function () {
-    const link = document.getElementById('link-input').value.trim();
+document.getElementById('search-btn').addEventListener('click', searchPodcast);
 
-    if (link === '') {
-        alert('Please enter a valid link');
+function searchPodcast() {
+    const linkInput = document.getElementById('link-input');
+    const errorMessage = document.getElementById('error-message');
+    const videoLink = linkInput.value.trim();
+
+    const validPlatforms = [
+        'youtube.com', 'youtu.be',
+        'tiktok.com', 'instagram.com',
+        'facebook.com', 'twitter.com', 'x.com'
+    ];
+
+    // Validazione URL
+    if (!validPlatforms.some(domain => videoLink.includes(domain))) {
+        linkInput.classList.add('invalid');
+        errorMessage.textContent = '❌ Invalid link. Use YouTube, TikTok, Instagram, Facebook, Twitter/X.';
         return;
+    } else {
+        linkInput.classList.remove('invalid');
+        errorMessage.textContent = '';
     }
 
-    searchPodcast(link);
-});
-
-function searchPodcast(link) {
+    // Chiamata al server
     fetch('http://localhost:3000/api/analyze', {
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ link: link }) // Invia il link nel corpo della richiesta
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ videoLink })
     })
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Failed to fetch data');
-        }
-        return response.json(); // Risposta attesa in formato JSON
-    })
+    .then(response => response.json())
     .then(data => {
-        // Gestisci la risposta
-        if (data.message) {
-            alert(data.message); // Mostra il messaggio di successo
+        if (data.valid) {
+            linkInput.classList.add('valid');
+            errorMessage.textContent = '✅ Valid link! You can now search for the podcast.';
         } else {
-            alert(data.error); // Mostra il messaggio di errore
+            linkInput.classList.add('invalid');
+            errorMessage.textContent = '❌ Podcast not found.';
         }
     })
     .catch(error => {
-        console.error('Error:', error);
-        alert('An error occurred');
+        linkInput.classList.add('invalid');
+        errorMessage.textContent = '❌ Error connecting to the server.';
+        console.error(error);
     });
 }

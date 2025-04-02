@@ -1,42 +1,25 @@
 const express = require('express');
 const cors = require('cors');
-const bodyParser = require('body-parser');
-const path = require('path');
-
 const app = express();
-const port = 3000;
+const PORT = 3000;
 
-// Abilita CORS
+// Middleware
 app.use(cors());
+app.use(express.json());
+app.use(express.static('public')); // Serve la cartella public
 
-// Configura il body parser per gestire i dati in formato JSON
-app.use(bodyParser.json());
-
-// Servi i file statici dalla cartella 'public'
-app.use(express.static(path.join(__dirname, 'public')));
-
-// Endpoint API per analizzare il link
+// API route
 app.post('/api/analyze', (req, res) => {
-  const { link } = req.body; // Ottieni il link dal corpo della richiesta
+    const { link } = req.body;
 
-  if (!link || link.trim() === '') {
-    // Se il link è vuoto o non valido, rispondi con un errore
-    return res.status(400).json({ error: 'Invalid link' });
-  }
+    if (!link || !link.startsWith("http")) {
+        return res.status(400).json({ message: "Link non valido" });
+    }
 
-  // Qui dovresti aggiungere la logica per analizzare il link e determinare se è valido o meno.
-  // Ad esempio, puoi verificare se il link è di un tipo di contenuto specifico.
-  
-  // Simulazione di successo (puoi modificare con la tua logica)
-  res.json({ message: 'Video link is valid!' });
+    res.status(200).json({ message: "Link valido! Puoi cercare il podcast." });
 });
 
-// Endpoint di default per servire l'index.html
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname, 'public', 'index.html'));
-});
-
-// Avvia il server
-app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}`);
+// Start Server
+app.listen(PORT, () => {
+    console.log(`✅ Server running at http://localhost:${PORT}`);
 });
